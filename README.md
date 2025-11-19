@@ -18,27 +18,32 @@ During development, several UI issues were identified and fixed. Below is a deta
 - **Issue:** Date input fields were not user-friendly.  
 - **Fix:** Added proper formatting, spacing, and consistent styling.  
 - **Screenshot:**  
-  ![Step 2 - Date Input UI](./assets/step2_date_input.png)
+  ![Step 2 - Date Input UI](./assets//step2_date_input.png)
 
 ### Step 3
 - **Issue:** No spacing between navigation components.  
 - **Fix:** Added consistent padding and margins between nav items.  
 - **Screenshot:**  
-  ![Step 3 - Nav Spacing](./assets/step3_nav_spacing.png)
+  ![Step 3 - Nav Spacing](./assets//step3_nav_spacing.png)
 
 ### Step 4
 - **Issue:** Buttons like "Edit Info", "Login Info", and "Assign Player" were not user-friendly.  
 - **Fix:** Redesigned buttons with proper colors, padding, and icons.  
 - **Screenshot:**  
-  ![Step 4 - Buttons](./assets/step4_buttons.png)
+  ![Step 4 - Buttons](./assets//step4_buttons.png)
 
 ### Step 5
 - **Issue:** Dashboard sections (My Profile, My Spot, Match, Login Details, Food Menu) were not consistent in size.  
 - **Fix:** Standardized card sizes and spacing for all dashboard sections.  
 - **Screenshot:**  
-  ![Step 5 - Dashboard Sections](./assets/step5_dashboard_sections.png)
+  ![Step 5 - Dashboard Sections](./assets//step5_dashboard_sections.png)
 
+
+
+there are more i didnt list
 ---
+
+
 
 ## 2. Features Implemented (UI Improvements)
 
