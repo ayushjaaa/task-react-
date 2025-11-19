@@ -7,11 +7,13 @@ const DashboardScreen = () => {
     const upcomingMatch = { time: "2:30 PM" }; // dummy data from mockup
     const todaysMeal = { name: "Breakfast", time: "7-9 AM" }; // dummy data
 
+    
+
     return (
         <div className="p-6 bg-secondary">
             <header className="mb-8 flex justify-between items-center">
                 <div>
-                    <h1 className="text-2xl font-bold text-gray-800">KhelKhud</h1>
+                    <h1 className="text-2xl font-bold text-gray-800"></h1>
                     <p className="text-gray-600">Welcome back, Athlete!</p>
                 </div>
                 <div className="relative">

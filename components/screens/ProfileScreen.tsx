@@ -3,7 +3,7 @@ import { LogOut, Edit, Phone, Mail, Award, Calendar, QrCode, Lock } from 'lucide
 import { useAppContext } from '../../context/AppContext';
 
 const ProfileScreen = () => {
-    const { playerData, setActiveView } = useAppContext();
+    const { playerData, setActiveView ,registrationData} = useAppContext();
 
     return (
         <div className="p-6 bg-secondary min-h-full">
@@ -15,8 +15,8 @@ const ProfileScreen = () => {
                         {/* Placeholder for profile picture */}
                     </div>
                 </div>
-                <h2 className="text-xl font-bold text-gray-800">{playerData.name}</h2>
-                <p className="text-gray-500">{`${playerData.sport} • ${playerData.category}`}</p>
+                <h2 className="text-xl font-bold text-gray-800">{registrationData.fullName}</h2>
+                <p className="text-gray-500">{`${registrationData.sportCategory} • ${playerData.category}`}</p>
                 <button className="mt-4 flex items-center gap-2 text-sm font-semibold text-primary bg-white px-4 py-2 rounded-full shadow-soft">
                     <Edit size={16} /> Edit Profile
                 </button>
@@ -24,7 +24,7 @@ const ProfileScreen = () => {
             
             <div className="bg-white rounded-2xl shadow-soft p-6 mb-4">
                 <InfoItem label="Phone Number" value={playerData.mobile} />
-                <InfoItem label="Email Address" value={playerData.email} />
+                <InfoItem label="Email Address" value={registrationData.email} />
                 <InfoItem label="Sport & Category" value={`${playerData.sport} - ${playerData.category}`} />
             </div>
 

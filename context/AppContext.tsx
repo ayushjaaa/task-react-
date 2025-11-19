@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext, ReactNode } from 'react';
+import React, { createContext, useState, useContext, ReactNode, useEffect } from 'react';
 import { MainView, Player, Match, Lodging, FoodMenu } from '../types';
 import { mockPlayer, mockMatches, mockTravelInfo, mockLodging, mockNotifications, mockFoodMenu } from '../data/mockData';
 
@@ -15,6 +15,8 @@ interface AppContextType {
   matches: Match[];
   setMatches: React.Dispatch<React.SetStateAction<Match[]>>;
   foodMenu: FoodMenu;
+  registrationData: any;
+  setRegistrationData: React.Dispatch<React.SetStateAction<any>>;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -29,6 +31,11 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   const [matches, setMatches] = useState(mockMatches);
   const [foodMenu] = useState(mockFoodMenu);
 
+  // New state: registrationData
+  const [registrationData, setRegistrationData] = useState<any>(() => {
+    const saved = localStorage.getItem("formdata");
+    return saved ? JSON.parse(saved) : null;
+  });
 
   const updateTravelInfo = (newInfo: typeof mockTravelInfo) => {
     setTravelInfo(newInfo);
@@ -47,6 +54,8 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     matches,
     setMatches,
     foodMenu,
+    registrationData,
+    setRegistrationData
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
@@ -54,8 +63,6 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
 
 export const useAppContext = () => {
   const context = useContext(AppContext);
-  if (context === undefined) {
-    throw new Error('useAppContext must be used within an AppProvider');
-  }
+  if (!context) throw new Error('useAppContext must be used within AppProvider');
   return context;
 };
