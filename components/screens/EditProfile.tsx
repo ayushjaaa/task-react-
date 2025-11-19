@@ -12,7 +12,7 @@ const EditProfile: React.FC = () => {
 
   const [errors, setErrors] = useState<any>({});
 
-  // Initialize form with existing data
+ 
   useEffect(() => {
     if (registrationData) {
       setFormData({
@@ -24,14 +24,14 @@ const EditProfile: React.FC = () => {
     console.log(formData)
   }, [registrationData]);
 
-  // Input change handler
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
     setErrors(prev => ({ ...prev, [name]: '' }));
   };
 
-  // Validation
+
   const validate = () => {
     const newErrors: any = {};
     if (!formData.fullName.trim()) newErrors.fullName = 'Full Name is required';
@@ -48,7 +48,7 @@ const EditProfile: React.FC = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  // Submit handler
+
   const handleSubmit = () => {
     if (!validate()) return;
 
@@ -72,7 +72,7 @@ const EditProfile: React.FC = () => {
     <div className="p-6 bg-gray-50 h-screen overflow-auto max-w-md mx-auto">
       <h1 className="text-2xl font-bold mb-6 text-gray-800">Edit Profile</h1>
 
-      {/* Full Name */}
+
       <div className="mb-4">
         <label className="block text-gray-700 font-medium mb-1">Full Name</label>
         <input
@@ -85,7 +85,7 @@ const EditProfile: React.FC = () => {
         {errors.fullName && <p className="text-red-500 text-sm">{errors.fullName}</p>}
       </div>
 
-      {/* Email */}
+
       <div className="mb-4">
         <label className="block text-gray-700 font-medium mb-1">Email</label>
         <input
@@ -99,7 +99,7 @@ const EditProfile: React.FC = () => {
         {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
       </div>
 
-      {/* Phone Number */}
+
       <div className="mb-4">
         <label className="block text-gray-700 font-medium mb-1">Phone Number</label>
         <input

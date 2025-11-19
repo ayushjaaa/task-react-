@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { BedDouble, MapPin, Edit, UserPlus, Utensils, Clock, CheckCircle } from 'lucide-react';
 import { useAppContext } from '../../context/AppContext';
 import { Roommate, MenuItem } from '../../types';
+import { parseISO, format } from "date-fns";
+
 
 const BookingsScreen = () => {
     const [view, setView] = useState<'lodging' | 'food'>('lodging');
@@ -21,7 +23,7 @@ const BookingsScreen = () => {
 };
 
 const LodgingView = () => {
-    const { lodgingInfo } = useAppContext();
+    const { lodgingInfo ,registrationData} = useAppContext();
     return (
         <div>
             <div className="bg-orange-400 text-white p-6 rounded-2xl shadow-lg mb-6">
@@ -38,17 +40,17 @@ const LodgingView = () => {
             
             <InfoCard>
                 <p className="text-sm text-gray-500">Address</p>
-                <p className="font-semibold text-gray-800">{lodgingInfo.address}</p>
+                <p className="font-semibold text-gray-800">{registrationData.address}</p>
             </InfoCard>
 
             <div className="grid grid-cols-2 gap-4 mb-6">
                 <InfoCard>
                     <p className="text-sm text-gray-500">Check-in</p>
-                    <p className="font-semibold text-gray-800">{lodgingInfo.checkIn}</p>
+                    <p className="font-semibold text-gray-800"> {format(parseISO(registrationData.arrivalDate), "dd MMM yyyy, hh:mm a")}</p>
                 </InfoCard>
                 <InfoCard>
                     <p className="text-sm text-gray-500">Check-out</p>
-                    <p className="font-semibold text-gray-800">{lodgingInfo.checkOut}</p>
+                    <p className="font-semibold text-gray-800">{format(parseISO(registrationData.departureDate),"dd MMM yyyy, hh:mm a")}</p>
                 </InfoCard>
             </div>
 

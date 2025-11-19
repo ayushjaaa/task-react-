@@ -205,17 +205,17 @@ const [formData, setFormData] = useState({
   
   const nextStep = () => {
     if (step === 1) {
-      // if (!validateStep1()) return; 
+      if (!validateStep1()) return; 
       console.log(registrationData)
     }
     if (step === 2) {
       
-      // if (!validateStep2()) return;
+      if (!validateStep2()) return;
       setRegistrationData({...registrationData,...formData})
-      localStorage.setItem("formdata", JSON.stringify(registrationData));
+      localStorage.setItem("formdata", JSON.stringify(registrationData,formData));
     }
 
-    setStep(step + 1); // ✔ Move to next
+    setStep(step + 1);
   };
   
   const prevStep = () => setStep(s => s - 1);

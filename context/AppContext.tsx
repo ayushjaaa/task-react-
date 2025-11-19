@@ -37,7 +37,7 @@ export const AppProvider = ({ children, setRootView }: AppProviderProps) => {
   const [notifications] = useState(mockNotifications);
   const [matches, setMatches] = useState(mockMatches);
   const [foodMenu] = useState(mockFoodMenu);
-
+console.log(activeView)
   // New state: registrationData
   const [registrationData, setRegistrationData] = useState<any>(() => {
     const saved = localStorage.getItem("formdata");
