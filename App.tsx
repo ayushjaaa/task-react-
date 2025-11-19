@@ -41,7 +41,7 @@ export default function App() {
           <div className="w-16 h-2 bg-gray-700 rounded-full"></div>
         </div>
         <div className="w-full h-full bg-white">
-          <AppProvider>
+          <AppProvider setRootView={setView}>
             {renderView()}
           </AppProvider>
         </div>

@@ -11,6 +11,7 @@ import EditProfile from './screens/EditProfile';
 import LogoutPage from './screens/LogoutPage';
 import RegistrationFlow from './screens/RegistrationFlow';
 import LoginScreen from './screens/LoginScreen';
+import AddMatchForm from './screens/AddMatchForm';
 
 const DateTimeHeader = () => {
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
@@ -47,6 +48,7 @@ const DateTimeHeader = () => {
 const MainApp = () => {
   const { activeView, setActiveView } = useAppContext();
 
+
   const renderActiveView = () => {
     switch (activeView) {
       case 'home':
@@ -67,7 +69,8 @@ case 'logout':
   return <RegistrationFlow/>
   case 'login':
     return <LoginScreen/>
-  return 
+case 'addmatch':
+  return <AddMatchForm/>
 
       default:
         return <DashboardScreen />;

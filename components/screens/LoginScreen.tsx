@@ -10,7 +10,8 @@ interface LoginScreenProps {
 
 const LoginScreen: React.FC<LoginScreenProps> = ({ setView, setMobileNumber }) => {
   const [number, setNumber] = useState('');
-  const { registrationData ,setRegistrationData} = useAppContext();
+  const { registrationData ,setRegistrationData,activeView} = useAppContext();
+  console.log(activeView)
   const handleSendOTP = () => {
     if (number.length === 10) {
       setMobileNumber(number);

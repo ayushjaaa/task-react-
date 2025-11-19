@@ -67,7 +67,7 @@ const [formData, setFormData] = useState({
   // });
   
 
-  const { registrationData ,setRegistrationData} = useAppContext();
+  const { registrationData ,setRegistrationData,activeView} = useAppContext();
 
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -224,6 +224,7 @@ const [formData, setFormData] = useState({
     setShowSuccess(true);
     setTimeout(() => {
       setView('main');
+      console.log(activeView)
     }, 2000);
   };
 

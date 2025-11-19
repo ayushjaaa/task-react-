@@ -2,7 +2,7 @@ import React from 'react';
 import { useAppContext } from '@/context/AppContext';
 
 const LogoutPage: React.FC = () => {
-  const { setRegistrationData, setActiveView} = useAppContext();
+  const { setRegistrationData, setActiveView, setRootView } = useAppContext();
 
   const handleLogout = () => {
    
@@ -12,7 +12,8 @@ const LogoutPage: React.FC = () => {
     localStorage.removeItem('formdata');
 
     alert('You have been logged out successfully! ✅');
-    setActiveView('login')
+    setActiveView('home');
+    setRootView('login');
     
 
 

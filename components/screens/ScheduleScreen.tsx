@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 
 import { ArrowLeft, MapPin, Calendar, Users, Trophy, Trash, Edit } from 'lucide-react';
@@ -6,8 +6,10 @@ import { useAppContext } from '../../context/AppContext';
 import { Match, MatchStatus, Teammate } from '../../types';
 
 const ScheduleScreen = () => {
-    const { matches, selectedMatch, setSelectedMatch } = useAppContext();
-    
+    const { matches, selectedMatch, setSelectedMatch ,setActiveView} = useAppContext();
+    console.log(matches)
+    const [showAddForm, setShowAddForm] = useState(false);
+
     if (selectedMatch) {
         return <MatchDetailView match={selectedMatch} onBack={() => setSelectedMatch(null)} />;
     }
@@ -21,12 +23,12 @@ const ScheduleScreen = () => {
                 <FilterButton label="Upcoming" />
                 <FilterButton label="Completed" />
             </div>
-            <button className="w-full bg-primary text-white font-semibold py-3 rounded-2xl shadow-md hover:bg-primary-dark mb-6">
+            <button onClick={()=>setActiveView('addmatch')} className="w-full bg-primary text-white font-semibold py-3 rounded-2xl shadow-md hover:bg-primary-dark mb-6">
                 + Register for New Sport
             </button>
             <div className="space-y-4">
                 {matches.map(match => (
-                    <MatchCard key={match.id} match={match} onClick={() => setSelectedMatch(match)} />
+                    <MatchCard  key={match.id} match={match} onClick={() => setSelectedMatch(match)} />
                 ))}
             </div>
         </div>
@@ -45,7 +47,7 @@ const MatchCard: React.FC<{ match: Match, onClick: () => void }> = ({ match, onC
         Upcoming: 'bg-orange-100 text-orange-800',
     };
     return (
-        <button onClick={onClick} className="w-full bg-white p-4 rounded-2xl shadow-soft text-left">
+        <button onClick={onClick} className="w-full bg-white p-4 rounded-2xl shadow-soft text-left bg-red-200">
             <div className="flex justify-between items-start mb-3">
                 <div>
                     <p className="font-bold text-lg text-gray-800">{match.sport}</p>

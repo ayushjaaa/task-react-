@@ -1,5 +1,5 @@
-import React, { createContext, useState, useContext, ReactNode, useEffect } from 'react';
-import { MainView, Player, Match, Lodging, FoodMenu } from '../types';
+import React, { createContext, useState, useContext, ReactNode } from 'react';
+import { MainView, Player, Match, Lodging, FoodMenu, View } from '../types';
 import { mockPlayer, mockMatches, mockTravelInfo, mockLodging, mockNotifications, mockFoodMenu } from '../data/mockData';
 
 interface AppContextType {
@@ -17,12 +17,19 @@ interface AppContextType {
   foodMenu: FoodMenu;
   registrationData: any;
   setRegistrationData: React.Dispatch<React.SetStateAction<any>>;
+  setRootView: (view: View) => void;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
-export const AppProvider = ({ children }: { children: ReactNode }) => {
+interface AppProviderProps {
+  children: ReactNode;
+  setRootView: (view: View) => void;
+}
+
+export const AppProvider = ({ children, setRootView }: AppProviderProps) => {
   const [activeView, setActiveView] = useState<MainView>('home');
+
   const [selectedMatch, setSelectedMatch] = useState<Match | null>(null);
   const [playerData] = useState<Player>(mockPlayer);
   const [travelInfo, setTravelInfo] = useState(mockTravelInfo);
@@ -55,7 +62,8 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     setMatches,
     foodMenu,
     registrationData,
-    setRegistrationData
+    setRegistrationData,
+    setRootView
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
