@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import { View } from '../../types';
+import { useAppContext } from '@/context/AppContext';
 
 interface LoginScreenProps {
   setView: (view: View) => void;
@@ -9,10 +10,12 @@ interface LoginScreenProps {
 
 const LoginScreen: React.FC<LoginScreenProps> = ({ setView, setMobileNumber }) => {
   const [number, setNumber] = useState('');
-
+  const { registrationData ,setRegistrationData} = useAppContext();
   const handleSendOTP = () => {
     if (number.length === 10) {
       setMobileNumber(number);
+      setRegistrationData({...registrationData,number:number,})
+      console.log(registrationData)
       setView('otp');
     } else {
       alert('Please enter a valid 10-digit mobile number.');

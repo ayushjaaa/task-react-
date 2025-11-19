@@ -4,6 +4,7 @@ import { useAppContext } from '../../context/AppContext';
 
 const ProfileScreen = () => {
     const { playerData, setActiveView ,registrationData} = useAppContext();
+    console.log(registrationData)
 
     return (
         <div className="p-6 bg-secondary min-h-full">
@@ -23,7 +24,7 @@ const ProfileScreen = () => {
             </div>
             
             <div className="bg-white rounded-2xl shadow-soft p-6 mb-4">
-                <InfoItem label="Phone Number" value={playerData.mobile} />
+                <InfoItem label="Phone Number" value={registrationData.number} />
                 <InfoItem label="Email Address" value={registrationData.email} />
                 <InfoItem label="Sport & Category" value={`${playerData.sport} - ${playerData.category}`} />
             </div>

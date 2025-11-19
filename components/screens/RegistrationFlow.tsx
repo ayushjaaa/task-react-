@@ -45,26 +45,26 @@ const [formData, setFormData] = useState({
 
 
 
-  const [userdetail, setuserdetail] = useState(() => {
-    const saved = localStorage.getItem("formdata");
-    return saved ? JSON.parse(saved) : {
-      fullName: "",
-      age: "",
-      gender: "",
-      email: "",
-      address: "",
-      state: "",
-      sportCategory: "",
-      photo: null,
-      modeOfTransport: "",
-      arrivalDate: "",
-      arrivalTime: "",
-      departureDate: "",
-      departureTime: "",
-      pickupLocation: "",
-      emergencyContact: ""
-    };
-  });
+  // const [userdetail, setuserdetail] = useState(() => {
+  //   const saved = localStorage.getItem("formdata");
+  //   return saved ? JSON.parse(saved) : {
+  //     fullName: "",
+  //     age: "",
+  //     gender: "",
+  //     email: "",
+  //     address: "",
+  //     state: "",
+  //     sportCategory: "",
+  //     photo: null,
+  //     modeOfTransport: "",
+  //     arrivalDate: "",
+  //     arrivalTime: "",
+  //     departureDate: "",
+  //     departureTime: "",
+  //     pickupLocation: "",
+  //     emergencyContact: ""
+  //   };
+  // });
   
 
   const { registrationData ,setRegistrationData} = useAppContext();
@@ -78,7 +78,7 @@ const [formData, setFormData] = useState({
       [name]: files ? files[0] : value
     }));
     setErrors({...errors,[name]:""})
-    console.log(formData)
+    // console.log(formData)
   };
 
 
@@ -206,12 +206,13 @@ const [formData, setFormData] = useState({
   const nextStep = () => {
     if (step === 1) {
       // if (!validateStep1()) return; 
+      console.log(registrationData)
     }
     if (step === 2) {
       
       // if (!validateStep2()) return;
-      setRegistrationData(formData)
-      localStorage.setItem("formdata", JSON.stringify(formData));
+      setRegistrationData({...registrationData,...formData})
+      localStorage.setItem("formdata", JSON.stringify(registrationData));
     }
 
     setStep(step + 1); // ✔ Move to next
