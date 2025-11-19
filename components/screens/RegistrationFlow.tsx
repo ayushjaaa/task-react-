@@ -11,19 +11,51 @@ const RegistrationFlow: React.FC<RegistrationFlowProps> = ({ setView }) => {
   const [showSuccess, setShowSuccess] = useState(false);
 
   // Step-1 form data state
-  const [formData, setFormData] = useState({
-    fullName: "",
-    age: "",
-    gender: "",
-    email: "",
-    address: "",
-    state: "",
-    sportCategory: "",
-    photo: null as File | null
-  });
+const [formData, setFormData] = useState({
+  fullName: "",
+  age: "",
+  gender: "",
+  email: "",
+  address: "",
+  state: "",
+  sportCategory: "",
+  photo: null as File | null,
+
+  // ⭐ Step 2 fields added:
+  modeOfTransport: "",
+  arrivalDate: "",
+  arrivalTime: "",
+  departureDate: "",
+  departureTime: "",
+  pickupLocation: "",
+  emergencyContact: ""
+});
 
   const [errors, setErrors] = useState({});
 
+
+
+  const [userdetail, setuserdetail] = useState(() => {
+    const saved = localStorage.getItem("formdata");
+    return saved ? JSON.parse(saved) : {
+      fullName: "",
+      age: "",
+      gender: "",
+      email: "",
+      address: "",
+      state: "",
+      sportCategory: "",
+      photo: null,
+      modeOfTransport: "",
+      arrivalDate: "",
+      arrivalTime: "",
+      departureDate: "",
+      departureTime: "",
+      pickupLocation: "",
+      emergencyContact: ""
+    };
+  });
+  
 
   // Universal input handler
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -67,10 +99,40 @@ const RegistrationFlow: React.FC<RegistrationFlowProps> = ({ setView }) => {
     return Object.keys(newErrors).length === 0; //
   };
   
+
+  const validateStep2 = () => {
+    const newErrors: any = {};
+  
+    if (!formData.modeOfTransport.trim()) {
+      newErrors.modeOfTransport = "Transport mode is required";
+    }
+    if (!formData.arrivalDate.trim()) {
+      newErrors.arrivalDate = "Arrival date is required";
+    }
+    if (!formData.departureDate.trim()) {
+      newErrors.departureDate = "Departure date is required";
+    }
+    if (!formData.pickupLocation.trim()) {
+      newErrors.pickupLocation = "Pickup/Drop location is required";
+    }
+    if (!formData.emergencyContact.trim()) {
+      newErrors.emergencyContact = "Emergency contact is required";
+    }
+  
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+  
   const nextStep = () => {
     if (step === 1) {
       if (!validateStep1()) return; 
     }
+    if (step === 2) {
+      
+      if (!validateStep2()) return;
+      localStorage.setItem("formdata", JSON.stringify(formData));
+    }
+
     setStep(step + 1); // ✔ Move to next
   };
   
@@ -94,10 +156,19 @@ const RegistrationFlow: React.FC<RegistrationFlowProps> = ({ setView }) => {
             errors={errors}
           />
         );
-      case 2:
-        return <Step2Travel onNext={nextStep} onBack={prevStep} />;
+        case 2:
+          return (
+            <Step2Travel
+              onNext={nextStep}
+              onBack={prevStep}
+              formData={formData}
+              handleChange={handleChange}
+              errors={errors}
+            />
+          );
+        
       case 3:
-        return <Step3Payment onPaymentSuccess={handlePaymentSuccess} onBack={prevStep} />;
+        return <Step3Payment  userdetail={userdetail} onPaymentSuccess={handlePaymentSuccess} onBack={prevStep} />;
       default:
         return (
           <Step1Profile
@@ -309,39 +380,79 @@ const Step1Profile = ({
 // STEP 2 — SAME AS ORIGINAL (NO CHANGE)
 // --------------------------------------------
 
-const Step2Travel = ({ onNext, onBack }: { onNext: () => void, onBack: () => void }) => (
+const Step2Travel = ({
+  onNext,
+  onBack,
+  formData,
+  handleChange,
+  errors
+}: any) => (
   <div className="animate-fade-in ">
     <h3 className="text-lg font-semibold mb-4 text-gray-700">Step 2: Travel Information</h3>
 
     <FormInput label="Mode of Transport ">
-      <select className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary bg-white">
+      <select
+        name="modeOfTransport"
+        value={formData.modeOfTransport}
+        onChange={handleChange}
+        className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary bg-white"
+      >
+        <option value="">Select</option>
         <option>Bus</option>
         <option>Train</option>
         <option>Flight</option>
       </select>
+      {errors.modeOfTransport && <p className="text-red-500 text-sm">{errors.modeOfTransport}</p>}
     </FormInput>
 
     <div className="grid grid-cols-1 gap-4">
       <div className="mb-4">
-        <label className="block text-sm font-medium text-gray-700 mb-1">Arrival Date & Time</label>
-        <input 
-          type="datetime-local" 
-          className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+        <label className="block text-sm font-medium text-gray-700 mb-1">Arrival Date</label>
+        <input
+          name="arrivalDate"
+        type="datetime-local"
+          value={formData.arrivalDate}
+          onChange={handleChange}
+          className="w-full p-3 border border-gray-300 rounded-lg"
         />
-        <p className="text-xs text-gray-500 mt-1">Select date and time</p>
+        {errors.arrivalDate && <p className="text-red-500 text-sm">{errors.arrivalDate}</p>}
       </div>
+
       <div className="mb-4">
-        <label className="block text-sm font-medium text-gray-700 mb-1">Departure Date & Time</label>
-        <input 
-          type="datetime-local" 
-          className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+        <label className="block text-sm font-medium text-gray-700 mb-1">Departure Date</label>
+        <input
+          name="departureDate"
+            type="datetime-local"
+          value={formData.departureDate}
+          onChange={handleChange}
+          className="w-full p-3 border border-gray-300 rounded-lg"
         />
-        <p className="text-xs text-gray-500 mt-1">Select date and time</p>
+        {errors.departureDate && <p className="text-red-500 text-sm">{errors.departureDate}</p>}
       </div>
     </div>
 
-    <FormInput label="Pickup / Drop Location" placeholder="e.g., Airport/Station Name" />
-    <FormInput label="Emergency Contact" type="tel" placeholder="+91 99999 88888" />
+    <FormInput label="Pickup / Drop Location">
+      <input
+        name="pickupLocation"
+        value={formData.pickupLocation}
+        onChange={handleChange}
+        placeholder="e.g., Airport"
+        className="w-full p-3 border border-gray-300 rounded-lg"
+      />
+      {errors.pickupLocation && <p className="text-red-500 text-sm">{errors.pickupLocation}</p>}
+    </FormInput>
+
+    <FormInput label="Emergency Contact">
+      <input
+        name="emergencyContact"
+        type="tel"
+        value={formData.emergencyContact}
+        onChange={handleChange}
+        placeholder="+91 99999 88888"
+        className="w-full p-3 border border-gray-300 rounded-lg"
+      />
+      {errors.emergencyContact && <p className="text-red-500 text-sm">{errors.emergencyContact}</p>}
+    </FormInput>
 
     <div className="flex gap-4 mt-4 mb-12">
       <button type="button" onClick={onBack} className="w-1/2 bg-gray-300 text-gray-800 font-semibold py-3 rounded-lg hover:bg-gray-400">Back</button>
@@ -351,11 +462,13 @@ const Step2Travel = ({ onNext, onBack }: { onNext: () => void, onBack: () => voi
 );
 
 
+
 // --------------------------------------------
 // STEP 3 — SAME AS ORIGINAL (NO CHANGE)
 // --------------------------------------------
 
-const Step3Payment = ({ onPaymentSuccess, onBack }: { onPaymentSuccess: () => void, onBack: () => void }) => (
+const Step3Payment = ({ onPaymentSuccess, onBack,userdetail }: { onPaymentSuccess: () => void,userdetail: any
+,  onBack: () => void }) => (
   <div className="animate-fade-in">
     <h3 className="text-lg font-semibold mb-4 text-gray-700">Step 3: Registration Fee Payment</h3>
 
@@ -364,12 +477,12 @@ const Step3Payment = ({ onPaymentSuccess, onBack }: { onPaymentSuccess: () => vo
 
       <div className="flex justify-between items-center mb-2">
         <span className="text-gray-600">Player Name:</span>
-        <span className="font-medium text-gray-800">Rahul Kumar</span>
+        <span className="font-medium text-gray-800">{userdetail.fullName}</span>
       </div>
 
       <div className="flex justify-between items-center mb-4">
         <span className="text-gray-600">Sport:</span>
-        <span className="font-medium text-gray-800">Badminton</span>
+        <span className="font-medium text-gray-800">{userdetail.sportCategory}</span>
       </div>
 
       <div className="border-t pt-4 flex justify-between items-center text-lg">
