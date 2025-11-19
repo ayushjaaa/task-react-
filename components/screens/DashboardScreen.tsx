@@ -3,7 +3,7 @@ import { Calendar, BedDouble, Utensils, User, Trophy, BookMarked, Bell } from 'l
 import { useAppContext } from '../../context/AppContext';
 
 const DashboardScreen = () => {
-    const { setActiveView, lodgingInfo } = useAppContext();
+    const { setActiveView, lodgingInfo ,registrationData} = useAppContext();
     const upcomingMatch = { time: "2:30 PM" }; // dummy data from mockup
     const todaysMeal = { name: "Breakfast", time: "7-9 AM" }; // dummy data
 
@@ -14,11 +14,11 @@ const DashboardScreen = () => {
             <header className="mb-8 flex justify-between items-center">
                 <div>
                     <h1 className="text-2xl font-bold text-gray-800"></h1>
-                    <p className="text-gray-600">Welcome back, Athlete!</p>
+                    <p className="text-gray-600">{`Welcome back,! ${registrationData.fullName}`}</p>
                 </div>
-                <div className="relative">
-                    <Bell className="text-gray-600" size={26} />
-                    <div className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-secondary"></div>
+                <div onClick={()=>setActiveView('NotificationsScreen')} className="relative">
+                    <Bell  className="text-gray-600" size={26} />
+                    <div  className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-secondary"></div>
                 </div>
             </header>
 

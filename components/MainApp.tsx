@@ -12,6 +12,7 @@ import LogoutPage from './screens/LogoutPage';
 import RegistrationFlow from './screens/RegistrationFlow';
 import LoginScreen from './screens/LoginScreen';
 import AddMatchForm from './screens/AddMatchForm';
+import NotificationsScreen from './screens/NotificationsScreen';
 
 const DateTimeHeader = () => {
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
@@ -71,6 +72,8 @@ case 'logout':
     return <LoginScreen/>
 case 'addmatch':
   return <AddMatchForm/>
+  case 'NotificationsScreen':
+  return <NotificationsScreen/>
 
       default:
         return <DashboardScreen />;
