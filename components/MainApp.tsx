@@ -80,7 +80,7 @@ case 'addmatch':
   const NavItem = ({ view, icon: Icon, label }: { view: MainView, icon: React.ElementType, label: string }) => {
     const isActive = activeView === view;
     return (
-      <button onClick={() => setActiveView(view)} className={`flex bg-red-200 flex-col items-center justify-center w-1/5 transition-colors duration-300 ${isActive ? 'text-primary' : 'text-gray-400'}`}>
+      <button onClick={() => setActiveView(view)} className={`flex  flex-col items-center justify-center w-1/5 transition-colors duration-300 ${isActive ? 'text-primary' : 'text-gray-400'}`}>
         <Icon size={24} strokeWidth={isActive ? 2.5 : 2} />
         <span className={`text-xs mt-1 font-semibold ${isActive ? 'text-primary' : 'text-gray-500'}`}>{label}</span>
       </button>

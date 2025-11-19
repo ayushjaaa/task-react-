@@ -60,14 +60,17 @@ const LodgingView = () => {
                 {lodgingInfo.roommates.map(mate => <RoommateCard key={mate.initials} roommate={mate} />)}
             </div>
             
-            <div className="flex gap-3">
-                 <button className="w-full bg-primary text-white font-semibold py-3 rounded-2xl flex items-center justify-center gap-2">
-                    <Edit size={18} /> Edit Lodging Info
-                </button>
-                 <button className="w-full bg-white text-primary border-2 border-primary font-semibold py-3 rounded-2xl flex items-center justify-center gap-2">
-                    <UserPlus size={18} /> Assign Player
-                </button>
-            </div>
+         <div className="flex flex-col gap-4 w-full max-w-sm mx-auto">
+
+  <button className="w-full bg-primary text-white font-semibold py-3 rounded-2xl flex items-center justify-center gap-2 shadow-md hover:bg-primary-dark transition-colors duration-300">
+    <Edit size={18} /> Edit Lodging Info
+  </button>
+
+  
+  <button className="w-full bg-white text-primary border-2 border-primary font-semibold py-3 rounded-2xl flex items-center justify-center gap-2 shadow-md hover:bg-primary hover:text-white transition-colors duration-300">
+    <UserPlus size={18} /> Assign Player
+  </button>
+</div>
         </div>
     );
 }
