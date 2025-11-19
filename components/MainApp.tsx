@@ -93,13 +93,15 @@ case 'addmatch':
        <main className="flex-grow overflow-y-auto pb-20">
         {renderActiveView()}
       </main>
-      <footer className="absolute bottom-0 left-0 right-0 h-20 bg-white border-t border-gray-200 flex items-center justify-around shadow-soft z-10 rounded-t-2xl">
-        <NavItem view="home" icon={Home} label="Home" />
-        <NavItem view="sports" icon={Trophy} label="Sports" />
-        <NavItem view="members" icon={Users} label="Members" />
-        <NavItem view="bookings" icon={BookMarked} label="Bookings" />
-        <NavItem view="profile" icon={ProfileIcon} label="Profile" />
-      </footer>
+      <footer className="absolute bottom-0 left-0 right-0 h-20 bg-white border-t border-gray-200 flex items-center justify-evenly shadow-soft z-10 p-3 rounded-t-2xl">
+  <NavItem view="home" icon={Home} label="Home" />
+  <NavItem view="sports" icon={Trophy} label="Sports" />
+  <NavItem view="members" icon={Users} label="Members" />
+  <NavItem view="bookings" icon={BookMarked} label="Bookings" />
+  <NavItem view="profile" icon={ProfileIcon} label="Profile" />
+</footer>
+
+
     </div>
   );
 };

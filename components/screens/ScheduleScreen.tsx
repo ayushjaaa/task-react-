@@ -47,7 +47,7 @@ const MatchCard: React.FC<{ match: Match, onClick: () => void }> = ({ match, onC
         Upcoming: 'bg-orange-100 text-orange-800',
     };
     return (
-        <button onClick={onClick} className="w-full bg-white p-4 rounded-2xl shadow-soft text-left bg-red-200">
+        <button onClick={onClick} className="w-full bg-white p-4 rounded-2xl shadow-soft text-left ">
             <div className="flex justify-between items-start mb-3">
                 <div>
                     <p className="font-bold text-lg text-gray-800">{match.sport}</p>
