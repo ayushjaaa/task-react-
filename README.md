@@ -44,17 +44,48 @@ there are more i didnt list
 ---
 
 
+## 2. Features Implemented
 
-## 2. Features Implemented (UI Improvements)
+### Registration & User Form Features
+1. **Multi-step Form Navigation**
+   - Next/Previous buttons are now visible and properly styled
+   - Smooth transition between steps
 
-- Multi-step form navigation improved (Next/Previous buttons visible and styled)  
-- Date inputs are now readable and user-friendly  
-- Navigation components properly spaced  
-- Action buttons redesigned: "Edit Info", "Login Info", "Assign Player"  
-- Dashboard sections standardized for consistent sizing and alignment  
-- Overall UI theme created from scratch for a clean, professional look  
+2. **Form Validation**
+   - Name is required
+   - Age must be greater than a valid threshold
+   - Email ID must be valid
+   - State must be from India
+   - Arrival date must be earlier than departure date
+   - Emergency contact must be 10 digits
 
----
+3. **Date Inputs**
+   - User-friendly format
+   - Proper spacing and styling
+   - Readable across devices
 
-> **Tip:** Screenshots should be placed in an `assets` folder in your project and referenced relative to the README.md file.  
+### Dashboard & User Data Features
+4. **Show All User Data**
+   - Display user details clearly on dashboard
+   - Data saved in **local storage** and **React context**  
+     → Even after refresh, user remains logged in
+
+5. **Real-time Edit Profile**
+   - Users can edit their profile and changes reflect immediately
+   - Smooth UX for updates
+
+6. **Logout Feature**
+   - Removes user data from context and local storage
+   - Clears session securely
+
+7. **User Login Details**
+   - Arrival time and checkout time displayed with better UX
+   - Clear and readable format
+
+### Sports & Match Features
+8. **Register New Sport**
+   - Users can add new sports
+   - Newly registered sports show up in **Sports & Match page**
+
+
 
