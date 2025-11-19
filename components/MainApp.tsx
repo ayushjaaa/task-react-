@@ -7,6 +7,10 @@ import BookingsScreen from './screens/BookingsScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import MembersScreen from './screens/MembersScreen';
 import { MainView } from '../types';
+import EditProfile from './screens/EditProfile';
+import LogoutPage from './screens/LogoutPage';
+import RegistrationFlow from './screens/RegistrationFlow';
+import LoginScreen from './screens/LoginScreen';
 
 const DateTimeHeader = () => {
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
@@ -55,6 +59,16 @@ const MainApp = () => {
         return <BookingsScreen />;
       case 'profile':
         return <ProfileScreen />;
+        case 'editprofile':
+return <EditProfile/>
+case 'logout':
+  return <LogoutPage/>
+  case'register':
+  return <RegistrationFlow/>
+  case 'login':
+    return <LoginScreen/>
+  return 
+
       default:
         return <DashboardScreen />;
     }

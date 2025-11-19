@@ -64,9 +64,7 @@ const OTPScreen: React.FC<OTPScreenProps> = ({ setView, mobileNumber, onVerifySu
                 value={data}
                 onChange={(e) => handleChange(e.target, index)}
                 onKeyDown={(e) => handleKeyDown(e, index)}
-                // FIX: Corrected the ref callback to not return a value.
-                // An assignment expression returns the assigned value, which is not a valid
-                // return type for a ref callback. Using a block body `{}` fixes this.
+         
                 ref={(el) => { inputsRef.current[index] = el; }}
                 className="w-14 h-14 text-center text-2xl font-semibold border border-gray-300  rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
               />

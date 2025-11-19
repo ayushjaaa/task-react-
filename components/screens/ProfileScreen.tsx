@@ -18,7 +18,7 @@ const ProfileScreen = () => {
                 </div>
                 <h2 className="text-xl font-bold text-gray-800">{registrationData.fullName}</h2>
                 <p className="text-gray-500">{`${registrationData.sportCategory} • ${playerData.category}`}</p>
-                <button className="mt-4 flex items-center gap-2 text-sm font-semibold text-primary bg-white px-4 py-2 rounded-full shadow-soft">
+                <button  onClick={()=>setActiveView('editprofile')} className="mt-4 flex items-center gap-2 text-sm font-semibold text-primary bg-white px-4 py-2 rounded-full shadow-soft">
                     <Edit size={16} /> Edit Profile
                 </button>
             </div>
@@ -35,7 +35,7 @@ const ProfileScreen = () => {
                 <ActionItem icon={Lock} label="Change Password" onClick={() => {}} />
             </div>
             
-            <button className="w-full mt-6 bg-red-100 text-red-600 font-bold py-3 rounded-2xl flex items-center justify-center gap-2 hover:bg-red-200">
+            <button onClick={()=>setActiveView('logout')} className="w-full mt-6 bg-red-100 text-red-600 font-bold py-3 rounded-2xl flex items-center justify-center gap-2 hover:bg-red-200">
                 <LogOut size={18} /> Logout
             </button>
         </div>
